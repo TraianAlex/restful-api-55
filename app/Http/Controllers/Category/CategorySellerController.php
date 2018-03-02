@@ -21,7 +21,12 @@ class CategorySellerController extends ApiController
     {
         $this->allowedAdminAction();
 
-        $sellers = $category->products()->with('seller')->get()->pluck('seller')->unique()->values();
+        $sellers = $category->products()
+                            ->with('seller')
+                            ->get()
+                            ->pluck('seller')
+                            ->unique()
+                            ->values();
         return $this->showAll($sellers);
     }
 }

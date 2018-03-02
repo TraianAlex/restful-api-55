@@ -21,11 +21,12 @@ class BuyerSellerController extends ApiController
     {
         $this->allowedAdminAction();
 
-        $sellers = $buyer->transactions()->with('product.seller')
-            ->get()
-            ->pluck('product.seller')
-            ->unique('id')
-            ->values();
+        $sellers = $buyer->transactions()
+                         ->with('product.seller')
+                         ->get()
+                         ->pluck('product.seller')
+                         ->unique('id')
+                         ->values();
         return $this->showAll($sellers);
     }
 }
